@@ -1,9 +1,18 @@
 "use client";
 import { useState } from "react";
 import { Check, Minus, ArrowRight, Building2 } from "lucide-react";
-import { plans, comparisonGroups } from "@/lib/plans";
+import {
+  plans,
+  comparisonGroups,
+  standardPlans,
+  vipPlan,
+  planPrice,
+  type BillingPeriod,
+} from "@/lib/plans";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { EntryButton } from "@/components/entry-button";
+import { SectionHeading } from "@/components/section-heading";
+import { Fragment } from "react";
 import {
   Card,
   CardHeader,
@@ -19,22 +28,27 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { useEntry } from "./entry-provider";
 export function Pricing() {
-  const [period, setPeriod] = useState("year");
-  const showEntry = useEntry();
+  const [period, setPeriod] = useState<BillingPeriod>("year");
   return (
-    <section id="pricing" className="section pricing-section">
+    <section
+      id="pricing"
+      className="section pricing-section"
+      aria-labelledby="pricing-title"
+      tabIndex={-1}
+    >
       <div className="container">
-        <div className="section-heading centered">
-          <h2>เลือก MIX ที่พอดีกับธุรกิจคุณ</h2>
-          <p>เริ่มจากสิ่งที่ต้องใช้ แล้วเติบโตไปด้วยกัน</p>
-        </div>
+        <SectionHeading
+          id="pricing-title"
+          title="เลือก MIX ที่พอดีกับธุรกิจคุณ"
+          description="เริ่มจากสิ่งที่ต้องใช้ แล้วเติบโตไปด้วยกัน"
+          centered
+        />
         <ToggleGroup
           type="single"
           value={period}
           onValueChange={(v) => {
-            if (v) setPeriod(v);
+            if (v === "year" || v === "half") setPeriod(v);
           }}
           className="billing-toggle"
           aria-label="รอบการชำระเงิน"
@@ -42,8 +56,15 @@ export function Pricing() {
           <ToggleGroupItem value="year">รายปี</ToggleGroupItem>
           <ToggleGroupItem value="half">6 เดือน</ToggleGroupItem>
         </ToggleGroup>
+        <p className="sr-only" role="status">
+          {period === "year" ? "แสดงราคารายปี" : "แสดงราคาสำหรับ 6 เดือน"} ·{" "}
+          {standardPlans
+            .filter((p) => p.key !== "trial")
+            .map((p) => `${p.tier} ${planPrice(p, period).amount}`)
+            .join(" · ")}
+        </p>
         <div className="pricing-grid">
-          {plans.slice(0, 4).map((p) => (
+          {standardPlans.map((p) => (
             <Card
               key={p.key}
               className={cn("price-card glass", p.featured && "featured")}
@@ -57,42 +78,37 @@ export function Pricing() {
               </CardHeader>
               <CardContent>
                 <div className="price">
-                  <strong>
-                    {p.key === "trial" || period === "year"
-                      ? p.price
-                      : p.halfYearPrice}
-                  </strong>
-                  <span>
-                    {p.key === "trial"
-                      ? "/ 48 วัน"
-                      : period === "year"
-                        ? "/ ปี"
-                        : "/ 6 เดือน"}
-                  </span>
+                  <strong>{planPrice(p, period).amount}</strong>
+                  <span>{planPrice(p, period).unit}</span>
                 </div>
                 <p className="plan-users">{p.users}</p>
                 <ul>
-                  {p.features.slice(1).map((f) => (
-                    <li key={f}>
-                      <Check aria-hidden="true" />
-                      {f}
-                    </li>
-                  ))}
+                  {p.features
+                    .filter((feature) => feature !== p.users)
+                    .map((f) => (
+                      <li key={f}>
+                        <Check aria-hidden="true" />
+                        {f}
+                      </li>
+                    ))}
                 </ul>
               </CardContent>
               <CardFooter>
-                <Button
+                <EntryButton
                   variant={p.key === "trial" ? "outline" : "default"}
-                  onClick={() =>
-                    showEntry({
-                      kind: p.key === "trial" ? "trial" : "contact",
-                      plan: p.tier,
-                    })
+                  entry={{
+                    kind: p.key === "trial" ? "trial" : "contact",
+                    plan: p.tier,
+                  }}
+                  aria-label={
+                    p.key === "trial"
+                      ? "เริ่มทดลองใช้ฟรี"
+                      : `เลือกแพ็กเกจ ${p.tier}`
                   }
                 >
                   {p.key === "trial" ? "เริ่มทดลองใช้ฟรี" : "เลือกแพ็กเกจ"}
                   <ArrowRight data-icon="inline-end" />
-                </Button>
+                </EntryButton>
               </CardFooter>
             </Card>
           ))}
@@ -101,22 +117,22 @@ export function Pricing() {
           <div className="vip-title">
             <Building2 />
             <div>
-              <h3>Mix-VIP</h3>
-              <p>มากกว่า 15 ผู้ใช้งาน</p>
+              <h3>{vipPlan.tier}</h3>
+              <p>{vipPlan.users}</p>
             </div>
           </div>
           <p>
             ระบบซื้อ ขาย สินค้า บัญชี และทรัพย์สิน
             <br />
-            <span>ราคาขึ้นกับประเภทธุรกิจ</span>
+            <span>{vipPlan.priceSub}</span>
           </p>
-          <Button
+          <EntryButton
             variant="outline"
-            onClick={() => showEntry({ kind: "contact", plan: "Mix-VIP" })}
+            entry={{ kind: "contact", plan: vipPlan.tier }}
           >
             ติดต่อทีมงาน
             <ArrowRight data-icon="inline-end" />
-          </Button>
+          </EntryButton>
         </div>
         <Accordion type="single" collapsible className="comparison">
           <AccordionItem value="compare">
@@ -129,6 +145,9 @@ export function Pricing() {
                 tabIndex={0}
               >
                 <table>
+                  <caption className="sr-only">
+                    รายละเอียดความสามารถและราคาของแต่ละแพ็กเกจ MIX
+                  </caption>
                   <thead>
                     <tr>
                       <th scope="col">ความสามารถ</th>
@@ -140,26 +159,36 @@ export function Pricing() {
                     </tr>
                   </thead>
                   <tbody>
-                    {comparisonGroups.map((group) =>
-                      group.rows.map((row, i) => (
-                        <tr key={`${group.group}-${i}`}>
-                          <th scope="row">{row.label}</th>
-                          {plans.map((p) => (
-                            <td key={p.key}>
-                              {typeof row[p.key] === "boolean" ? (
-                                row[p.key] ? (
-                                  <Check aria-label="มี" />
-                                ) : (
-                                  <Minus aria-label="ไม่มี" />
-                                )
-                              ) : (
-                                row[p.key]
-                              )}
-                            </td>
-                          ))}
+                    {comparisonGroups.map((group) => (
+                      <Fragment key={group.group}>
+                        <tr className="comparison-group">
+                          <th colSpan={plans.length + 1}>{group.group}</th>
                         </tr>
-                      )),
-                    )}
+                        {group.rows.map((row) => (
+                          <tr key={row.label}>
+                            <th scope="row">{row.label}</th>
+                            {plans.map((p) => (
+                              <td key={p.key}>
+                                {typeof row[p.key] === "boolean" ? (
+                                  <>
+                                    {row[p.key] ? (
+                                      <Check aria-hidden="true" />
+                                    ) : (
+                                      <Minus aria-hidden="true" />
+                                    )}
+                                    <span className="sr-only">
+                                      {row[p.key] ? "มี" : "ไม่มี"}
+                                    </span>
+                                  </>
+                                ) : (
+                                  row[p.key]
+                                )}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </Fragment>
+                    ))}
                   </tbody>
                 </table>
               </div>

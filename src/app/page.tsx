@@ -1,4 +1,7 @@
-import { Header, Hero, FinalCta, Footer } from "@/components/site-shell";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { Hero } from "@/components/landing/hero";
+import { FinalCta } from "@/components/landing/final-cta";
 import { ProductPreview } from "@/components/product-preview";
 import { Features } from "@/components/features";
 import { Pricing } from "@/components/pricing";
@@ -12,7 +15,7 @@ export default function Home() {
         ข้ามไปเนื้อหาหลัก
       </a>
       <Header />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <div className="hero-scene">
           <Hero />
           <ProductPreview />

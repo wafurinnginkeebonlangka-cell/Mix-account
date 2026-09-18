@@ -1,4 +1,5 @@
-"use client";
+import { site, contactEmailHref } from "@/lib/site";
+import { TRIAL_DAYS } from "@/lib/plans";
 import { Mail, Phone, ArrowUpRight } from "lucide-react";
 import {
   Accordion,
@@ -13,7 +14,7 @@ const faqs = [
   ],
   [
     "ทดลองฟรีได้อะไรบ้าง?",
-    "แพ็กเกจทดลองฟรีตามตารางปัจจุบันเปิดให้ใช้ 48 วัน สำหรับ 1 ผู้ใช้งาน ครอบคลุมข้อมูลพื้นฐานและเอกสารขาย พิมพ์ A4 รายงานการขาย และส่งออก Excel / CSV ไม่ใช่ทุกฟีเจอร์ของแพ็กเกจเสียเงิน",
+    `แพ็กเกจทดลองฟรีตามตารางปัจจุบันเปิดให้ใช้ ${TRIAL_DAYS} วัน สำหรับ 1 ผู้ใช้งาน ครอบคลุมข้อมูลพื้นฐานและเอกสารขาย พิมพ์ A4 รายงานการขาย และส่งออก Excel / CSV ไม่ใช่ทุกฟีเจอร์ของแพ็กเกจเสียเงิน`,
   ],
   [
     "ต้องติดตั้งโปรแกรมไหม?",
@@ -26,10 +27,15 @@ const faqs = [
 ];
 export function Help() {
   return (
-    <section id="help" className="section container help-grid">
+    <section
+      id="help"
+      className="section container help-grid"
+      aria-labelledby="help-title"
+      tabIndex={-1}
+    >
       <div className="help-intro">
         <span className="section-rule" />
-        <h2>
+        <h2 id="help-title">
           มีคำถาม?
           <br />
           เราพร้อมช่วย
@@ -40,23 +46,23 @@ export function Help() {
           เพื่อให้คุณเริ่มใช้ MIX ได้อย่างมั่นใจ
         </p>
         <div className="contact-options">
-          <a href="mailto:support@got-balance.com">
+          <a href={contactEmailHref()}>
             <span className="contact-icon glass">
               <Mail />
             </span>
             <span>
               <strong>ส่งอีเมล</strong>
-              <small>support@got-balance.com</small>
+              <small>{site.email}</small>
             </span>
             <ArrowUpRight />
           </a>
-          <a href="tel:0816948966">
+          <a href={site.phoneHref}>
             <span className="contact-icon glass">
               <Phone />
             </span>
             <span>
               <strong>โทรสอบถาม</strong>
-              <small>081-694-8966</small>
+              <small>{site.phone}</small>
             </span>
             <ArrowUpRight />
           </a>

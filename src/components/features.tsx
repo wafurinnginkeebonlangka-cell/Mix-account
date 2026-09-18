@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/section-heading";
 import Image from "next/image";
 import {
   FileText,
@@ -43,19 +44,25 @@ const features = [
 ];
 export function Features() {
   return (
-    <section id="features" className="section container">
-      <div className="section-heading">
-        <div>
-          <span className="section-rule" />
-          <h2>เชื่อมทุกงาน ให้ธุรกิจไปต่อ</h2>
-          <p>ตั้งแต่เอกสารใบแรก ไปจนถึงภาพรวมบัญชี</p>
-        </div>
-        <span className="section-aside">
-          งานดูแลง่าย
-          <br />
-          ธุรกิจเดินหน้าได้มากขึ้น
-        </span>
-      </div>
+    <section
+      id="features"
+      className="section container"
+      aria-labelledby="features-title"
+      tabIndex={-1}
+    >
+      <SectionHeading
+        id="features-title"
+        title="เชื่อมทุกงาน ให้ธุรกิจไปต่อ"
+        description="ตั้งแต่เอกสารใบแรก ไปจนถึงภาพรวมบัญชี"
+        rule
+        aside={
+          <>
+            งานดูแลง่าย
+            <br />
+            ธุรกิจเดินหน้าได้มากขึ้น
+          </>
+        }
+      />
       <div className="feature-grid">
         {features.map((f) => (
           <Card key={f.title} className="feature-card glass">

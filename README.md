@@ -16,7 +16,7 @@ npm run dev
 ## ตรวจและเปิดแบบ production preview
 
 ```sh
-npm run lint
+npm run check
 npm run build
 npm run start
 ```
@@ -48,3 +48,21 @@ npm run start
 5. เพิ่ม production metadata/sitemap/legal pages และ deploy บน Nginx/PM2 ตามแผน
 
 หมายเหตุ: PDF เดิมระบุ Next.js 15 แต่โปรเจกต์ GOT BALANCE ปัจจุบันใช้ Next.js 16 จึงใช้สาย 16 เช่นกัน เวอร์ชันที่ติดตั้งแน่นอนอยู่ใน package-lock.json
+
+## โครงสร้างสำหรับพัฒนาต่อ
+
+- `src/app`: route, metadata, ฟอนต์, หน้า 404 และ stylesheet entry
+- `src/components/layout`: brand, header และ footer ที่ใช้ซ้ำได้
+- `src/components/landing`: hero และส่วนชวนเริ่มใช้งาน; section อื่นอยู่ใน `src/components`
+- `src/components/ui`: primitive จาก shadcn/Radix
+- `SectionHeading` และ `EntryButton`: หัวข้อ section และจุดเปิด dialog ที่ใช้ร่วมกัน
+- `EntryProvider`: จัดการ dialog ส่วนกลางและคืน keyboard focus เมื่อปิด
+- `src/lib/site.ts`: ข้อมูลติดต่อและ navigation; `src/lib/plans.ts`: แพ็กเกจและการคำนวณข้อความราคา
+- `src/hooks/use-media-query.ts`: breakpoint สำหรับ interaction ที่ต้องปรับตามอุปกรณ์
+- `src/styles`: tokens, base, layout, landing, product-preview, pricing และ feedback แยกตามหน้าที่
+
+ใช้ Server Components เป็นค่าเริ่มต้น และ Client Components เฉพาะจุดที่มี state, browser API หรือ animation โดยรักษา design tokens เดิมใน `src/styles/tokens.css`
+
+`npm run check` ตรวจรูปแบบโค้ด, lint และ TypeScript; `npm run format` จัดรูปแบบโค้ด ไม่มีการเชื่อมบริการภายนอกในขั้นตอนเหล่านี้
+
+ก่อนเพิ่ม feature ควรตรวจ keyboard navigation, การคืน focus ของ dialog, เมนูมือถือหลัง resize, แท็บตัวอย่าง, ราคา/ตารางเปรียบเทียบ และ FAQ ที่ desktop/tablet/mobile อีกครั้ง ข้อมูลในหน้าตัวอย่างระบบเป็น mock data และยังไม่มีชุดทดสอบ browser อัตโนมัติ

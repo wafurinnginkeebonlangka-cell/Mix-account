@@ -1,4 +1,6 @@
 "use client";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { MOBILE_QUERY } from "@/lib/site";
 import Image from "next/image";
 import {
   ShoppingCart,
@@ -67,10 +69,12 @@ const demos = [
   },
 ];
 export function ProductPreview() {
+  const mobile = useMediaQuery(MOBILE_QUERY);
   return (
     <section
       id="product-demo"
       className="preview-wrap container"
+      tabIndex={-1}
       aria-label="ตัวอย่างการทำงานของ MIX"
     >
       <div className="preview-caption">
@@ -78,7 +82,11 @@ export function ProductPreview() {
         ตัวอย่างหน้าระบบ MIX
         <span className="preview-hint">ลองสลับเมนูเพื่อดูตัวอย่าง</span>
       </div>
-      <Tabs defaultValue="purchase" className="product-preview glass">
+      <Tabs
+        defaultValue="purchase"
+        orientation={mobile ? "horizontal" : "vertical"}
+        className="product-preview glass"
+      >
         <aside className="preview-sidebar">
           <Image src="/mix-logo.png" alt="MIX" width={58} height={44} />
           <span className="sidebar-caption">พื้นที่ทำงานของคุณ</span>
@@ -156,6 +164,9 @@ export function ProductPreview() {
                 tabIndex={0}
               >
                 <table className="demo-table">
+                  <caption className="sr-only">
+                    รายการตัวอย่าง: {d.title}
+                  </caption>
                   <thead>
                     <tr>
                       {[

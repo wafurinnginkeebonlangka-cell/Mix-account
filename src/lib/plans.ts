@@ -1,4 +1,7 @@
 // ข้อมูลจากตารางราคาโปรแกรม Mix-Account V1 ใช้ร่วมกันทั้งหน้าแรกและหน้าราคา
+export const TRIAL_DAYS = 48;
+export type BillingPeriod = "year" | "half";
+
 export type PlanKey = "trial" | "basic" | "pro" | "proPlus" | "vip";
 export type Plan = {
   key: PlanKey;
@@ -14,7 +17,6 @@ export type Plan = {
   featured: boolean;
   ribbon: string | null;
   btnText: string;
-  href: string;
 };
 
 export const plans: Plan[] = [
@@ -22,10 +24,10 @@ export const plans: Plan[] = [
     key: "trial",
     tier: "ทดลองฟรี",
     name: "เปิดบิลขาย",
-    desc: "ทดลองระบบพื้นฐานและระบบขายฟรี 48 วัน",
+    desc: `ทดลองระบบพื้นฐานและระบบขายฟรี ${TRIAL_DAYS} วัน`,
     price: "฿0",
-    priceUnit: "/48 วัน",
-    priceSub: "ทดลองฟรี 48 วัน",
+    priceUnit: `/ ${TRIAL_DAYS} วัน`,
+    priceSub: `ทดลองฟรี ${TRIAL_DAYS} วัน`,
     halfYearPrice: "—",
     users: "1 ผู้ใช้งาน",
     features: [
@@ -37,7 +39,6 @@ export const plans: Plan[] = [
     featured: false,
     ribbon: null,
     btnText: "เริ่มทดลองฟรี",
-    href: "/register",
   },
   {
     key: "basic",
@@ -58,7 +59,6 @@ export const plans: Plan[] = [
     featured: false,
     ribbon: null,
     btnText: "เลือกแพ็กเกจ",
-    href: "/contact",
   },
   {
     key: "pro",
@@ -79,7 +79,6 @@ export const plans: Plan[] = [
     featured: false,
     ribbon: null,
     btnText: "เลือกแพ็กเกจ",
-    href: "/contact",
   },
   {
     key: "proPlus",
@@ -100,7 +99,6 @@ export const plans: Plan[] = [
     featured: true,
     ribbon: null,
     btnText: "เลือกแพ็กเกจ",
-    href: "/contact",
   },
   {
     key: "vip",
@@ -121,9 +119,18 @@ export const plans: Plan[] = [
     featured: false,
     ribbon: null,
     btnText: "ติดต่อทีมงาน",
-    href: "/contact",
   },
 ];
+
+export const standardPlans = plans.filter((plan) => plan.key !== "vip");
+export const vipPlan = plans.find((plan) => plan.key === "vip")!;
+export function planPrice(plan: Plan, period: BillingPeriod) {
+  if (plan.key === "trial" || plan.key === "vip")
+    return { amount: plan.price, unit: plan.priceUnit };
+  return period === "year"
+    ? { amount: plan.price, unit: "/ ปี" }
+    : { amount: plan.halfYearPrice, unit: "/ 6 เดือน" };
+}
 
 type ComparisonRow = { label: string } & Record<PlanKey, string | boolean>;
 const row = (
@@ -148,7 +155,7 @@ export const comparisonGroups: { group: string; rows: ComparisonRow[] }[] = [
     rows: [
       row(
         "ราคา / ปี",
-        "ฟรี 48 วัน",
+        `ฟรี ${TRIAL_DAYS} วัน`,
         "฿5,500",
         "฿8,000",
         "฿10,000",
