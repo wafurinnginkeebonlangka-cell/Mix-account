@@ -42,7 +42,7 @@ export const plans: Plan[] = [
   },
   {
     key: "basic",
-    tier: "Mix-Basic",
+    tier: "MIX BASIC",
     name: "ระบบขาย",
     desc: "ระบบขายและระบบลูกหนี้ พร้อมรับมัดจำและรับชำระเงิน",
     price: "฿5,500",
@@ -62,7 +62,7 @@ export const plans: Plan[] = [
   },
   {
     key: "pro",
-    tier: "Mix-Pro",
+    tier: "MIX PRO",
     name: "ระบบซื้อและขาย",
     desc: "ดูแลการซื้อ การขาย ลูกหนี้ และเจ้าหนี้",
     price: "฿8,000",
@@ -82,7 +82,7 @@ export const plans: Plan[] = [
   },
   {
     key: "proPlus",
-    tier: "Mix-Pro+",
+    tier: "MIX PLUS",
     name: "ระบบสินค้าและบัญชี",
     desc: "ระบบซื้อ ขาย ลูกหนี้ เจ้าหนี้ พร้อมระบบสินค้าและบัญชี",
     price: "฿10,000",
@@ -102,7 +102,7 @@ export const plans: Plan[] = [
   },
   {
     key: "vip",
-    tier: "Mix-VIP",
+    tier: "MIX VIP",
     name: "ระบบทรัพย์สิน",
     desc: "ระบบซื้อ ขาย ลูกหนี้ เจ้าหนี้ สินค้า บัญชี และทรัพย์สิน",
     price: "ติดต่อทีมงาน",

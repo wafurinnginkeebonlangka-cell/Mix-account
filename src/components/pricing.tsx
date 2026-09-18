@@ -172,7 +172,9 @@ export function Pricing() {
                                 {typeof row[p.key] === "boolean" ? (
                                   <>
                                     {row[p.key] ? (
-                                      <Check aria-hidden="true" />
+                                      <span className="check-badge">
+                                        <Check aria-hidden="true" />
+                                      </span>
                                     ) : (
                                       <Minus aria-hidden="true" />
                                     )}
