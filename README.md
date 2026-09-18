@@ -1,0 +1,50 @@
+# MIX website
+
+เว็บไซต์ต้นแบบ MIX แยกจากเว็บบริษัท GOT BALANCE โดยใช้ Next.js App Router, TypeScript, Tailwind CSS v4, shadcn/ui (Radix), Framer Motion และฟอนต์ IBM Plex Sans Thai ที่เก็บในโปรเจกต์
+
+## เปิดเว็บ
+
+```sh
+npm install
+npm run dev
+```
+
+เปิด http://localhost:3001 (ไม่ใช้พอร์ต 3000 ของเว็บ GOT BALANCE)
+
+โหมดพัฒนาใช้ Webpack พร้อม polling เพื่อหลีกเลี่ยงข้อจำกัดจำนวน file watchers บนเครื่องนี้
+
+## ตรวจและเปิดแบบ production preview
+
+```sh
+npm run lint
+npm run build
+npm run start
+```
+
+หยุด dev server ก่อนเปิด production preview บนพอร์ตเดียวกัน
+
+## ขอบเขตรอบนี้
+
+- หน้าแรก responsive: hero, ตัวอย่างระบบซื้อ/ขาย/สินค้า, ฟีเจอร์, ราคา, ตารางเปรียบเทียบ, FAQ และช่องทางติดต่อ
+- เมนูมือถือ, แท็บสาธิต, สลับราคารายปี/6 เดือน, FAQ และ dialog เลือกแพ็กเกจทำงาน
+- ปุ่มสมัคร/เข้าสู่ระบบแจ้งว่าเป็นต้นแบบ ไม่มีการรับ credentials หรือสร้างบัญชีจริง
+- ยังไม่เชื่อม Laravel, analytics, payment หรือฐานข้อมูล
+- ตั้ง noindex สำหรับต้นแบบ ต้องแก้เมื่อพร้อมเผยแพร่
+
+## ข้อมูลและดีไซน์
+
+- `src/lib/plans.ts`: สำเนาตารางแพ็กเกจจาก gotbalance-nextjs ราคาและฟีเจอร์ใช้แหล่งเดียว
+- ทดลองฟรี 48 วันตามตารางแพ็กเกจเดิม ต้องยืนยันก่อนเผยแพร่ เพราะเว็บบริษัทเคยมีข้อความ 30 วันร่วมด้วย
+- `public/`: โลโก้จริงจากเว็บไซต์ GOT BALANCE
+- `design/`: แนวทางภาพที่สร้างด้วย ImageGen และข้อกำหนดการออกแบบ ไม่ใช่ไฟล์ UI ที่นำมาแปะเป็นเว็บ
+- การ์ด/ตาราง/ข้อความทั้งหมดเป็น HTML ที่อ่านและโต้ตอบได้
+
+## รอบถัดไป
+
+1. ยืนยันเนื้อหา ราคา ระยะทดลอง และดีไซน์กับเจ้าของผลิตภัณฑ์
+2. เพิ่มหน้าสมัคร เข้าสู่ระบบ และกู้รหัสผ่าน หลังทราบ Laravel endpoints และ domain จริง
+3. เพิ่ม React Hook Form + Zod สำหรับฟอร์ม และ Axios/TanStack Query เมื่อเชื่อม API
+4. ทดสอบ Sanctum CSRF/session, CORS credentials, logout และ session expiry จริง
+5. เพิ่ม production metadata/sitemap/legal pages และ deploy บน Nginx/PM2 ตามแผน
+
+หมายเหตุ: PDF เดิมระบุ Next.js 15 แต่โปรเจกต์ GOT BALANCE ปัจจุบันใช้ Next.js 16 จึงใช้สาย 16 เช่นกัน เวอร์ชันที่ติดตั้งแน่นอนอยู่ใน package-lock.json
