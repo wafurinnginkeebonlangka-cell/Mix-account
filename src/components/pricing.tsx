@@ -12,7 +12,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 const paidPlans = plans.filter((plan) => plan.key !== "trial");
 
 export function Pricing() {
-  const [period, setPeriod] = useState<BillingPeriod>("year");
+  const [period, setPeriod] = useState<BillingPeriod>("month");
 
   return (
     <section
@@ -25,7 +25,6 @@ export function Pricing() {
         <div className="pricing-heading">
           <h2 id="pricing-title">แพ็กเกจที่พอดีกับธุรกิจคุณ</h2>
           <div className="pricing-heading-copy">
-            <p>ทุกแพ็กเกจครอบคลุมงานธุรกิจสำคัญ พร้อมเติบโตไปกับคุณ</p>
             <ToggleGroup
               type="single"
               value={period}

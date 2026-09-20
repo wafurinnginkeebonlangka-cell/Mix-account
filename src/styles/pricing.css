@@ -11,28 +11,23 @@
 }
 .pricing-heading {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
-  gap: clamp(50px, 8vw, 130px);
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: center;
   margin-bottom: 46px;
 }
 .pricing-heading h2 {
-  max-width: 650px;
+  max-width: none;
   color: #fff;
-  font-size: clamp(46px, 5vw, 72px);
+  font-size: clamp(46px, 4.2vw, 64px);
   line-height: 1.03;
   letter-spacing: -3px;
   font-weight: 600;
-}
-.pricing-heading-copy > p {
-  max-width: 520px;
-  color: #e4efe9;
-  font-size: clamp(20px, 2vw, 29px);
-  line-height: 1.45;
+  white-space: nowrap;
 }
 .billing-toggle[data-slot="toggle-group"] {
   width: fit-content;
-  margin-top: 24px;
+  margin-top: 0;
   padding: 4px;
   border: 1px solid #ffffff38;
   border-radius: 999px;
@@ -363,8 +358,8 @@
 }
 @media (max-width: 1100px) {
   .pricing-heading {
-    grid-template-columns: 1fr 0.72fr;
-    gap: 48px;
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -382,12 +377,10 @@
   .pricing-heading h2 {
     font-size: 44px;
     letter-spacing: -2px;
-  }
-  .pricing-heading-copy > p {
-    font-size: 18px;
+    white-space: normal;
   }
   .billing-toggle[data-slot="toggle-group"] {
-    margin-top: 18px;
+    margin-top: 0;
   }
   .pricing-grid {
     grid-template-columns: 1fr;
