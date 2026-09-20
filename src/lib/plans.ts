@@ -1,6 +1,6 @@
 // ข้อมูลจากตารางราคาโปรแกรม Mix-Account V1 ใช้ร่วมกันทั้งหน้าแรกและหน้าราคา
 export const TRIAL_DAYS = 48;
-export type BillingPeriod = "year" | "half";
+export type BillingPeriod = "month" | "quarter" | "year";
 
 export type PlanKey = "trial" | "basic" | "pro" | "proPlus" | "vip";
 export type Plan = {
@@ -11,7 +11,10 @@ export type Plan = {
   price: string;
   priceUnit: string;
   priceSub: string;
-  halfYearPrice: string;
+  monthlyPrice: string;
+  quarterlyPrice: string;
+  regularYearPrice: string;
+  yearSavings: string;
   users: string;
   features: string[];
   featured: boolean;
@@ -28,13 +31,17 @@ export const plans: Plan[] = [
     price: "฿0",
     priceUnit: `/ ${TRIAL_DAYS} วัน`,
     priceSub: `ทดลองฟรี ${TRIAL_DAYS} วัน`,
-    halfYearPrice: "—",
+    monthlyPrice: "—",
+    quarterlyPrice: "—",
+    regularYearPrice: "—",
+    yearSavings: "—",
     users: "1 ผู้ใช้งาน",
     features: [
       "1 ผู้ใช้งาน",
-      "ข้อมูลพื้นฐานและเอกสารขาย",
-      "พิมพ์ A4 และรายงานการขาย",
-      "Export Excel / CSV",
+      "ข้อมูลบริษัท ลูกหนี้ สินค้า และพนักงานขาย",
+      "ออกใบเสนอราคา บิลขาย และใบกำกับภาษี",
+      "พิมพ์เอกสาร A4 และดูรายงานยอดขาย",
+      `ทดลองใช้งานเต็ม ${TRIAL_DAYS} วัน พร้อม Export Excel / CSV`,
     ],
     featured: false,
     ribbon: null,
@@ -48,13 +55,18 @@ export const plans: Plan[] = [
     price: "฿5,500",
     priceUnit: "/ปี",
     priceSub: "รายปี ส่วนลด 1 เดือน",
-    halfYearPrice: "฿3,000",
+    monthlyPrice: "฿500",
+    quarterlyPrice: "฿1,500",
+    regularYearPrice: "฿6,000",
+    yearSavings: "฿500",
     users: "7 ผู้ใช้งาน",
     features: [
       "7 ผู้ใช้งาน",
-      "ระบบขายและลูกหนี้",
-      "รับมัดจำ วางบิล รับชำระเงิน",
-      "สิทธิ์ผู้ใช้ และ Export Excel / CSV",
+      "รวมระบบขายและเอกสารทั้งหมดจากแพ็กเกจทดลอง",
+      "จัดการลูกหนี้ ใบลดหนี้ ใบเพิ่มหนี้ และคืนสินค้า",
+      "รับมัดจำ วางบิล รับชำระ และติดตามยอดค้าง",
+      "กำหนดสิทธิ์ผู้ใช้และรองรับหน่วยสินค้าแบบแพ็ก",
+      "รายงานลูกหนี้ การรับเงิน พร้อม Export Excel / CSV",
     ],
     featured: false,
     ribbon: null,
@@ -62,19 +74,24 @@ export const plans: Plan[] = [
   },
   {
     key: "pro",
-    tier: "MIX PRO",
+    tier: "MIX PLUS",
     name: "ระบบซื้อและขาย",
     desc: "ดูแลการซื้อ การขาย ลูกหนี้ และเจ้าหนี้",
     price: "฿8,000",
     priceUnit: "/ปี",
     priceSub: "รายปี ส่วนลด 2 เดือน",
-    halfYearPrice: "฿4,800",
+    monthlyPrice: "฿800",
+    quarterlyPrice: "฿2,400",
+    regularYearPrice: "฿9,600",
+    yearSavings: "฿1,600",
     users: "12 ผู้ใช้งาน",
     features: [
       "12 ผู้ใช้งาน",
-      "ระบบซื้อ ขาย ลูกหนี้ เจ้าหนี้",
-      "รับ / จ่ายมัดจำและเช็ค",
-      "จัดการสาขา วงเงิน และรายงาน",
+      "รวมความสามารถทั้งหมดของ MIX BASIC",
+      "ระบบซื้อ เจ้าหนี้ ใบขอซื้อ ใบสั่งซื้อ และบิลซื้อ",
+      "รับ–จ่ายมัดจำ ชำระเงิน และบริหารเช็ค",
+      "จัดการหลายสาขา กำหนดวงเงิน และควบคุมสต็อก",
+      "รายงานซื้อ เจ้าหนี้ ภาษี และกำไรขาดทุนเบื้องต้น",
     ],
     featured: false,
     ribbon: null,
@@ -82,22 +99,27 @@ export const plans: Plan[] = [
   },
   {
     key: "proPlus",
-    tier: "MIX PLUS",
+    tier: "MIX PRO",
     name: "ระบบสินค้าและบัญชี",
     desc: "ระบบซื้อ ขาย ลูกหนี้ เจ้าหนี้ พร้อมระบบสินค้าและบัญชี",
     price: "฿10,000",
     priceUnit: "/ปี",
     priceSub: "รายปี ส่วนลด 2 เดือน",
-    halfYearPrice: "฿6,000",
+    monthlyPrice: "฿1,000",
+    quarterlyPrice: "฿3,000",
+    regularYearPrice: "฿12,000",
+    yearSavings: "฿2,000",
     users: "15 ผู้ใช้งาน",
     features: [
       "15 ผู้ใช้งาน",
-      "ระบบซื้อ ขาย ลูกหนี้ เจ้าหนี้",
-      "รับ จ่าย โอน และประกอบสินค้า",
-      "บันทึกบัญชีและปิดงบ",
+      "รวมความสามารถทั้งหมดของ MIX PRO",
+      "ระบบสินค้า รับ–จ่าย–โอน และจัดการหลายคลัง",
+      "ประกอบสินค้า ควบคุมวัตถุดิบ และตรวจนับสต็อก",
+      "บันทึกบัญชี ยอดยกมา งบการเงิน และปิดงบ",
+      "รายงานครบทั้งขาย ซื้อ สินค้า บัญชี และภาษี",
     ],
     featured: true,
-    ribbon: null,
+    ribbon: "แนะนำ",
     btnText: "เลือกแพ็กเกจ",
   },
   {
@@ -105,16 +127,21 @@ export const plans: Plan[] = [
     tier: "MIX VIP",
     name: "ระบบทรัพย์สิน",
     desc: "ระบบซื้อ ขาย ลูกหนี้ เจ้าหนี้ สินค้า บัญชี และทรัพย์สิน",
-    price: "ติดต่อทีมงาน",
-    priceUnit: "",
-    priceSub: "ราคาขึ้นกับประเภทธุรกิจ",
-    halfYearPrice: "—",
+    price: "เริ่มต้น ฿26,000",
+    priceUnit: "/ปี",
+    priceSub: "รายปี ส่วนลด 2 เดือน",
+    monthlyPrice: "เริ่มต้น ฿2,600",
+    quarterlyPrice: "เริ่มต้น ฿7,800",
+    regularYearPrice: "฿31,200",
+    yearSavings: "฿5,200",
     users: "มากกว่า 15 ผู้ใช้งาน",
     features: [
       "มากกว่า 15 ผู้ใช้งาน",
-      "ระบบซื้อ ขาย ลูกหนี้ เจ้าหนี้",
-      "ระบบสินค้า บัญชี และปิดงบ",
-      "ทรัพย์สินและคำนวณค่าเสื่อม",
+      "รวมความสามารถทั้งหมดของ MIX PLUS",
+      "ทะเบียนทรัพย์สิน ยอดยกมา และคำนวณค่าเสื่อม",
+      "รองรับผู้ใช้จำนวนมาก หลายสาขา และหลายคลัง",
+      "ปรับระบบและรายงานให้เหมาะกับประเภทธุรกิจ",
+      "ทีมผู้เชี่ยวชาญให้คำปรึกษาและดูแลการเริ่มใช้งาน",
     ],
     featured: false,
     ribbon: null,
@@ -122,14 +149,12 @@ export const plans: Plan[] = [
   },
 ];
 
-export const standardPlans = plans.filter((plan) => plan.key !== "vip");
-export const vipPlan = plans.find((plan) => plan.key === "vip")!;
 export function planPrice(plan: Plan, period: BillingPeriod) {
-  if (plan.key === "trial" || plan.key === "vip")
-    return { amount: plan.price, unit: plan.priceUnit };
-  return period === "year"
-    ? { amount: plan.price, unit: "/ ปี" }
-    : { amount: plan.halfYearPrice, unit: "/ 6 เดือน" };
+  if (plan.key === "trial") return { amount: plan.price, unit: plan.priceUnit };
+  if (period === "year") return { amount: plan.price, unit: "/ ปี" };
+  if (period === "quarter")
+    return { amount: plan.quarterlyPrice, unit: "/ 3 เดือน" };
+  return { amount: plan.monthlyPrice, unit: "/ เดือน" };
 }
 
 type ComparisonRow = { label: string } & Record<PlanKey, string | boolean>;
@@ -145,9 +170,9 @@ const fromBasic = (label: string) => row(label, false, true, true, true, true);
 const fromPro = (label: string) => row(label, false, false, true, true, true);
 const fromProPlus = (label: string) =>
   row(label, false, false, false, true, true);
-// ช่องความสามารถพิเศษของ Mix-Pro+ และ Mix-VIP ในเอกสารไม่ได้ระบุรายละเอียด
+// ความสามารถพิเศษของ Mix-Pro ที่ระบุในเอกสาร ถือว่า Mix-Pro+ และ Mix-VIP มีเช่นกัน (แพ็กเกจสูงกว่าไม่ตัดความสามารถของแพ็กเกจล่าง)
 const special = (label: string, trial: boolean, basic: boolean, pro: boolean) =>
-  row(label, trial, basic, pro, "ไม่ระบุ", "ไม่ระบุ");
+  row(label, trial, basic, pro, true, true);
 
 export const comparisonGroups: { group: string; rows: ComparisonRow[] }[] = [
   {
@@ -159,11 +184,11 @@ export const comparisonGroups: { group: string; rows: ComparisonRow[] }[] = [
         "฿5,500",
         "฿8,000",
         "฿10,000",
-        "ราคาขึ้นกับประเภทธุรกิจ",
+        "เริ่มต้น ฿26,000",
       ),
       row(
-        "ราคา / 6 เดือน",
-        ...(plans.map((p) => p.halfYearPrice) as [
+        "ราคา / เดือน",
+        ...(plans.map((p) => p.monthlyPrice) as [
           string,
           string,
           string,
@@ -171,7 +196,25 @@ export const comparisonGroups: { group: string; rows: ComparisonRow[] }[] = [
           string,
         ]),
       ),
-      row("ส่วนลดรายปี", "—", "1 เดือน", "2 เดือน", "2 เดือน", "—"),
+      row(
+        "ราคา / 3 เดือน",
+        ...(plans.map((p) => p.quarterlyPrice) as [
+          string,
+          string,
+          string,
+          string,
+          string,
+        ]),
+      ),
+      row("ราคาปกติ / ปี", "—", "฿6,000", "฿9,600", "฿12,000", "฿31,200"),
+      row(
+        "ส่วนลดรายปี",
+        "—",
+        "ประหยัด ฿500",
+        "ประหยัด ฿1,600",
+        "ประหยัด ฿2,000",
+        "ประหยัด ฿5,200",
+      ),
       row(
         "จำนวนผู้ใช้งาน",
         ...(plans.map((p) => p.users) as [

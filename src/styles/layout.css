@@ -37,6 +37,10 @@
   height: 44px;
   object-fit: contain;
 }
+.header .brand img {
+  width: 76px;
+  height: 56px;
+}
 .brand span {
   font-size: 10px;
   letter-spacing: 1.2px;
@@ -161,6 +165,10 @@
   .brand img {
     width: 49px;
     height: 39px;
+  }
+  .header .brand img {
+    width: 58px;
+    height: 44px;
   }
   .header-actions {
     gap: 6px;

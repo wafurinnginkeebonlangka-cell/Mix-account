@@ -17,7 +17,10 @@ import {
 import { site, contactEmailHref } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 
-export type Entry = { kind: "trial" | "login" | "contact"; plan?: string };
+export type Entry = {
+  kind: "trial" | "register" | "login" | "contact";
+  plan?: string;
+};
 const EntryContext = createContext<
   ((entry: Entry, trigger?: HTMLElement) => void) | null
 >(null);

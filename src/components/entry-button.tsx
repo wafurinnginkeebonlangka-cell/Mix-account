@@ -1,5 +1,6 @@
 "use client";
 import type { ComponentProps } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useEntry, type Entry } from "@/components/entry-provider";
 type Props = Omit<ComponentProps<typeof Button>, "onClick" | "asChild"> & {
@@ -8,8 +9,31 @@ type Props = Omit<ComponentProps<typeof Button>, "onClick" | "asChild"> & {
   returnFocus?: () => HTMLElement | null;
 };
 /** Shared integration point for trial/login/contact CTAs, with focus restoration. */
-export function EntryButton({ entry, onOpen, returnFocus, ...props }: Props) {
+export function EntryButton({
+  entry,
+  onOpen,
+  returnFocus,
+  children,
+  ...props
+}: Props) {
   const showEntry = useEntry();
+  if (entry.kind === "login") {
+    return (
+      <Button {...props} asChild onClick={onOpen}>
+        <Link href="/login">{children}</Link>
+      </Button>
+    );
+  }
+  if (entry.kind === "trial" || entry.kind === "register") {
+    const href = entry.plan
+      ? { pathname: "/register", query: { plan: entry.plan } }
+      : "/register";
+    return (
+      <Button {...props} asChild onClick={onOpen}>
+        <Link href={href}>{children}</Link>
+      </Button>
+    );
+  }
   return (
     <Button
       {...props}
@@ -18,6 +42,8 @@ export function EntryButton({ entry, onOpen, returnFocus, ...props }: Props) {
         onOpen?.();
         showEntry(entry, trigger);
       }}
-    />
+    >
+      {children}
+    </Button>
   );
 }

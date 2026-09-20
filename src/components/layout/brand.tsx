@@ -6,8 +6,8 @@ export function Brand({ priority = false }: { priority?: boolean }) {
     <Link href="/#top" className="brand" aria-label="MIX หน้าแรก">
       <Image
         src="/mix-logo.png"
-        width={68}
-        height={49}
+        width={84}
+        height={61}
         alt={site.name}
         priority={priority}
       />
