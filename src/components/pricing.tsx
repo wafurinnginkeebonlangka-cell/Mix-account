@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { plans, planPrice, type BillingPeriod } from "@/lib/plans";
 import { cn } from "@/lib/utils";
 import { EntryButton } from "@/components/entry-button";
+import { PriceAmount } from "@/components/price-amount";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -82,17 +83,7 @@ export function Pricing() {
               <CardContent>
                 <div className="price">
                   <strong>
-                    {(() => {
-                      const amount = planPrice(plan, period).amount;
-                      const match = amount.match(/^(เริ่มต้น)\s(.+)$/);
-                      if (!match) return amount;
-                      return (
-                        <>
-                          <span className="price-prefix">{match[1]}</span>{" "}
-                          {match[2]}
-                        </>
-                      );
-                    })()}
+                    <PriceAmount amount={planPrice(plan, period).amount} />
                   </strong>
                   <span>{planPrice(plan, period).unit}</span>
                 </div>
@@ -115,10 +106,7 @@ export function Pricing() {
                   )}
                 </div>
                 <p className="price-summary">{plan.desc}</p>
-                <Link
-                  href={`/pricing#${plan.key}`}
-                  className="plan-detail-link"
-                >
+                <Link href="/pricing#top" className="plan-detail-link">
                   ดูรายละเอียดแพ็กเกจ
                 </Link>
               </CardContent>
@@ -130,7 +118,7 @@ export function Pricing() {
           <EntryButton entry={{ kind: "trial" }}>
             ทดลองใช้ฟรี 48 วัน
           </EntryButton>
-          <Link href="/pricing" className="pricing-detail-link">
+          <Link href="/pricing#top" className="pricing-detail-link">
             ดูรายละเอียดราคาทั้งหมด
             <ArrowRight aria-hidden="true" />
           </Link>

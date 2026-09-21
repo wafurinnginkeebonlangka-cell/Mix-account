@@ -22,7 +22,7 @@ export default function RegisterPage() {
     <main className="register-page">
       <header className="register-topbar">
         <Link
-          href="/"
+          href="/#top"
           className="register-topbar-brand"
           aria-label="MIX หน้าแรก"
         >
@@ -41,7 +41,7 @@ export default function RegisterPage() {
             <Link href="/login">เข้าสู่ระบบ</Link>
           </Button>
           <span className="register-topbar-divider" aria-hidden="true" />
-          <Link href="/" className="register-home-link">
+          <Link href="/#top" className="register-home-link">
             <ArrowLeft aria-hidden="true" />
             กลับหน้าหลัก
           </Link>

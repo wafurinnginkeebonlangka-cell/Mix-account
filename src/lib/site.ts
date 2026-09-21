@@ -9,7 +9,7 @@ export const site = {
 } as const;
 export const navigation = [
   { href: "/#features", label: "ฟีเจอร์" },
-  { href: "/#pricing", label: "ราคา" },
+  { href: "/pricing", label: "ราคา" },
   { href: "/#help", label: "ช่วยเหลือ" },
 ] as const;
 export const MOBILE_QUERY = "(max-width: 760px)";

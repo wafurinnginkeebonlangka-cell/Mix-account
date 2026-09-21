@@ -6,6 +6,7 @@ import { EntryButton } from "@/components/entry-button";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { PricingComparison } from "@/components/pricing-comparison";
+import { PricingPlanCards } from "@/components/pricing-plan-cards";
 
 export const metadata: Metadata = {
   title: "เปรียบเทียบแพ็กเกจ | MIX",
@@ -25,6 +26,15 @@ export default function PricingPage() {
           <p>รายละเอียดแพ็กเกจ MIX</p>
           <h1>เปรียบเทียบให้ชัด ก่อนเลือกให้พอดี</h1>
           <span>ดูราคา จำนวนผู้ใช้งาน และความสามารถทั้งหมดของแต่ละแพ็กเกจ</span>
+        </section>
+        <section
+          className="plan-cards-section container"
+          aria-labelledby="plan-cards-title"
+        >
+          <h2 id="plan-cards-title" className="sr-only">
+            รายละเอียดแพ็กเกจ MIX
+          </h2>
+          <PricingPlanCards />
           <div className="pricing-details-actions">
             <EntryButton entry={{ kind: "trial" }}>
               เริ่มทดลองใช้ฟรี

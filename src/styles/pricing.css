@@ -262,6 +262,71 @@
   justify-content: center;
   gap: 12px;
 }
+.plan-cards-section {
+  padding-top: 36px;
+  padding-bottom: 64px;
+}
+.plan-cards-grid {
+  align-items: stretch;
+}
+.plan-cards-grid .price-card[data-slot="card"] {
+  background: #fff;
+  color: #0b4334;
+  box-shadow: 0 16px 40px #173d2d0d;
+}
+.plan-cards-grid .price-card [data-slot="card-content"] {
+  display: flex;
+  flex-direction: column;
+}
+.plan-includes-heading {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e6ede9;
+  color: #0b4334;
+  font-size: 13px;
+  font-weight: 700;
+}
+.plan-checklist {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  flex: 1;
+}
+.plan-checklist.no-heading {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e6ede9;
+}
+.plan-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #28352f;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.plan-checklist li svg {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  color: #3f7a52;
+}
+.plan-buy-button[data-slot="button"] {
+  width: 100%;
+  margin-top: 26px;
+}
+@media (max-width: 1100px) {
+  .plan-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .plan-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .pricing-comparison-section {
   padding-top: 58px;
   padding-bottom: 70px;

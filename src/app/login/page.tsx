@@ -21,7 +21,7 @@ export default function LoginPage() {
   return (
     <main className="login-page">
       <header className="login-topbar">
-        <Link href="/" className="login-brand" aria-label="MIX หน้าแรก">
+        <Link href="/#top" className="login-brand" aria-label="MIX หน้าแรก">
           <Image
             src="/mix-logo.png"
             width={74}
@@ -32,7 +32,7 @@ export default function LoginPage() {
           <strong>MIX BY {site.owner}</strong>
         </Link>
         <div className="login-topbar-actions">
-          <Link href="/" className="login-home-link">
+          <Link href="/#top" className="login-home-link">
             <ArrowLeft aria-hidden="true" />
             กลับหน้าหลัก
           </Link>
