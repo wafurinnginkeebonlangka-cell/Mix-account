@@ -118,6 +118,12 @@
   color: #61736a;
   font-size: 12px;
 }
+.price-prefix {
+  font-size: 0.48em !important;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+}
 .price-subline {
   min-height: 24px;
   margin-top: 9px;
@@ -168,12 +174,13 @@
   border-color: #9fb9aa;
   background: linear-gradient(145deg, #fff, #f1f7f3);
 }
+.price-card.vip-card .price {
+  white-space: nowrap;
+}
 .price-card.vip-card .price strong {
-  max-width: 220px;
-  white-space: normal;
-  font-size: 25px;
-  line-height: 1.15;
-  letter-spacing: -0.8px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
 }
 .pricing-actions {
   margin-top: 38px;

@@ -81,7 +81,19 @@ export function Pricing() {
               </CardHeader>
               <CardContent>
                 <div className="price">
-                  <strong>{planPrice(plan, period).amount}</strong>
+                  <strong>
+                    {(() => {
+                      const amount = planPrice(plan, period).amount;
+                      const match = amount.match(/^(เริ่มต้น)\s(.+)$/);
+                      if (!match) return amount;
+                      return (
+                        <>
+                          <span className="price-prefix">{match[1]}</span>{" "}
+                          {match[2]}
+                        </>
+                      );
+                    })()}
+                  </strong>
                   <span>{planPrice(plan, period).unit}</span>
                 </div>
                 <div className="price-subline">
