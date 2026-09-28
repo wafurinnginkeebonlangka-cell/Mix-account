@@ -189,8 +189,15 @@
   object-position: center bottom;
   transition: transform 0.35s ease;
 }
+.business-size-card:nth-child(3) > img {
+  transform: scale(1.18);
+  transform-origin: center bottom;
+}
 .business-size-card:hover > img {
   transform: scale(1.025);
+}
+.business-size-card:nth-child(3):hover > img {
+  transform: scale(1.21);
 }
 .section {
   padding-block: 90px;

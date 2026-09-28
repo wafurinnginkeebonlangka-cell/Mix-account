@@ -20,7 +20,7 @@ const businessSizes = [
     title: "ธุรกิจขนาดใหญ่–เฉพาะทาง",
     description:
       "รองรับหลายสาขา หลายคลัง และกระบวนการที่ต้องปรับให้เหมาะกับธุรกิจ",
-    image: "/business-enterprise.png",
+    image: "/business-enterprise-operations.png",
     href: "/pricing#vip",
   },
 ] as const;

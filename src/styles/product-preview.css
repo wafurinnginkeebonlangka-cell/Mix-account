@@ -637,6 +637,9 @@
 }
 .preview-video-frame {
   position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 28px;
   transition:
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     filter 0.35s ease;
@@ -656,7 +659,7 @@
   content: "";
 }
 .preview-video-frame .product-preview[data-slot="tabs"] {
-  min-height: 520px;
+  height: 100%;
   border: 1px solid #ffffff;
   background: linear-gradient(135deg, #eef8f2e8, #fffffff2);
   box-shadow:
@@ -848,9 +851,6 @@
   .preview-video-frame:hover,
   .preview-video-frame:focus-within {
     transform: none;
-  }
-  .preview-video-frame .product-preview[data-slot="tabs"] {
-    min-height: 0;
   }
   .preview-play-button {
     min-width: 202px;
