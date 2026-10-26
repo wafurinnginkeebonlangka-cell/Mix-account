@@ -1,26 +1,32 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const businessSizes = [
   {
-    title: "ธุรกิจขนาดเล็ก",
-    description: "เริ่มงานขายและจัดการเอกสารสำคัญให้เป็นระบบตั้งแต่วันแรก",
-    image: "/business-small.png",
+    label: "START",
+    title: "เริ่มธุรกิจ\nอย่างมั่นใจ",
+    description: "ดูแลงานขาย เอกสาร และเงินรับจ่าย แบบไม่ยุ่งยาก",
+    cta: "ดู MIX BASIC",
+    tone: "start",
     href: "/pricing#basic",
   },
   {
-    title: "ธุรกิจขนาดกลาง–ใหญ่",
+    label: "SCALE",
+    title: "ขยายงาน\nอย่างเป็นระบบ",
     description:
-      "เชื่อมงานขาย จัดซื้อ สินค้า และบัญชี เพื่อมองเห็นภาพรวมได้ชัดขึ้น",
-    image: "/business-growing.png",
+      "เชื่อมทีมซื้อ ขาย สินค้า และบัญชี ให้ข้อมูลไปในทิศทางเดียวกัน",
+    cta: "ดู MIX PRO",
+    tone: "scale",
     href: "/pricing#pro",
   },
   {
-    title: "ธุรกิจขนาดใหญ่–เฉพาะทาง",
-    description:
-      "รองรับหลายสาขา หลายคลัง และกระบวนการที่ต้องปรับให้เหมาะกับธุรกิจ",
-    image: "/business-enterprise-operations.png",
+    label: "CUSTOM",
+    title: "ปรับระบบ\nให้เหมาะกับคุณ",
+    description: "รองรับกระบวนการธุรกิจเฉพาะทาง พร้อมทีมงานช่วยวางแผน",
+    cta: "คุยกับทีม MIX",
+    tone: "custom",
     href: "/pricing#vip",
   },
 ] as const;
@@ -33,10 +39,29 @@ export function BusinessSize() {
     >
       <div className="container">
         <div className="business-size-heading">
-          <h2 id="business-size-title">MIX ที่พอดีกับทุกขนาดธุรกิจ</h2>
+          <div className="business-size-heading-copy">
+            <h2 id="business-size-title">
+              <span className="business-size-title-line">
+                <Image
+                  src="/mix-logo-outline.png"
+                  width={1192}
+                  height={815}
+                  alt="MIX"
+                  className="business-size-title-logo"
+                  sizes="(max-width: 760px) 80px, 120px"
+                />
+                ที่พอดีกับ
+              </span>
+              <span>ทุกช่วงการเติบโต</span>
+            </h2>
+          </div>
           <p>
-            เลือกจุดเริ่มต้นที่เหมาะกับคุณ
-            แล้วเพิ่มความสามารถได้เมื่อธุรกิจเติบโต
+            <span className="business-size-description-line">
+              ไม่ว่าคุณจะเพิ่งเริ่มต้น หรือกำลังขยายสาขา เลือกความสามารถ
+            </span>{" "}
+            <span className="business-size-description-line">
+              ที่เหมาะกับคุณในวันนี้ แล้วค่อยต่อยอดในวันข้างหน้า
+            </span>
           </p>
         </div>
 
@@ -46,24 +71,36 @@ export function BusinessSize() {
               key={business.title}
               href={business.href}
               className="business-size-card"
+              data-tone={business.tone}
               aria-label={`${business.title} ดูแพ็กเกจที่เหมาะสม`}
             >
-              <div className="business-size-card-heading">
-                <span className="business-size-arrow" aria-hidden="true">
-                  <ArrowRight />
-                </span>
-                <div>
-                  <h3>{business.title}</h3>
-                  <p>{business.description}</p>
-                </div>
-              </div>
               <Image
-                src={business.image}
-                width={1145}
-                height={1374}
+                src={`/business-${business.tone}-photo.webp`}
+                unoptimized
+                width={1200}
+                height={800}
                 alt=""
-                sizes="(max-width: 760px) 88vw, (max-width: 1100px) 44vw, 31vw"
+                className="business-size-card-photo"
+                sizes="(max-width: 900px) 100vw, 33vw"
               />
+              <div className="business-size-card-copy">
+                <Badge variant="secondary" className="business-size-badge">
+                  {business.label}
+                </Badge>
+                <h3>
+                  {business.title.split("\n").map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </h3>
+                <p>{business.description}</p>
+              </div>
+              <span className="business-size-card-cta">
+                {business.cta}
+                <ArrowRight aria-hidden="true" />
+              </span>
+              <span className="business-size-orbit" aria-hidden="true">
+                <span />
+              </span>
             </Link>
           ))}
         </div>

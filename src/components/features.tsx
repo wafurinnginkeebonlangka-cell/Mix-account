@@ -1,5 +1,4 @@
 import { SectionHeading } from "@/components/section-heading";
-import Image from "next/image";
 import {
   FileText,
   ShoppingCart,
@@ -7,7 +6,6 @@ import {
   Coins,
   Building2,
   ChartNoAxesCombined,
-  ShieldCheck,
   ArrowUpRight,
 } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -83,16 +81,13 @@ export function Features() {
         }
       />
       <div className="feature-grid">
-        {features.map((f, index) => (
+        {features.map((f) => (
           <div key={f.title} className="feature-item">
             <Card className="feature-card glass">
               <CardHeader>
                 <div className="feature-icon">
                   <f.icon strokeWidth={1.6} />
                 </div>
-                <span className="feature-number" aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
                 <CardTitle>
                   <h3>{f.title}</h3>
                 </CardTitle>
@@ -107,29 +102,6 @@ export function Features() {
             </Card>
           </div>
         ))}
-      </div>
-      <div className="developer-strip glass">
-        <div>
-          <span>พัฒนาโดย</span>
-          <Image
-            src="/got-balance-wordmark.png"
-            alt="GOT BALANCE"
-            width={195}
-            height={42}
-          />
-        </div>
-        <div>
-          <ShieldCheck />
-          <p>
-            <small>มาตรฐานการพัฒนาซอฟต์แวร์</small>
-            <strong>ISO/IEC 29110-4-1:2018</strong>
-          </p>
-        </div>
-        <p>
-          จากความเข้าใจงานบัญชี
-          <br />
-          สู่เครื่องมือสำหรับธุรกิจไทย
-        </p>
       </div>
       <p className="section-note">
         ความสามารถในการใช้งานขึ้นอยู่กับแพ็กเกจที่เลือก

@@ -145,7 +145,7 @@
 .register-brand em {
   margin-top: 3px;
   color: #435a4f;
-  font-family: Georgia, serif;
+  font-family: var(--font-sans);
   font-size: 18px;
 }
 .register-intro h1 {
@@ -955,7 +955,7 @@
   border-radius: 50%;
   background: #1877f2;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-sans);
   font-size: 17px;
 }
 .login-register-link {

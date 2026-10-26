@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "@fontsource/sarabun/400.css";
-import "@fontsource/sarabun/500.css";
-import "@fontsource/sarabun/600.css";
-import "@fontsource/sarabun/700.css";
+import "@fontsource/noto-sans-thai/400.css";
+import "@fontsource/noto-sans-thai/500.css";
+import "@fontsource/noto-sans-thai/600.css";
+import "@fontsource/noto-sans-thai/700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
