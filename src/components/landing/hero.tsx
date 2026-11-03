@@ -16,9 +16,11 @@ export function Hero() {
           transition={{ duration: 0.65 }}
         >
           <h1 id="hero-title">
-            ทุกบัญชีง่ายขึ้น
-            <span className="hero-title-second-line hero-accent">
-              ในที่เดียว
+            <span className="hero-title-line">
+              ทุกงาน<span className="hero-title-green">บัญชี</span>
+            </span>
+            <span className="hero-title-line">
+              <span className="hero-title-red">ง่ายขึ้น</span> ในที่เดียว
             </span>
           </h1>
           <p>
@@ -64,9 +66,9 @@ export function Hero() {
             }}
           >
             <Image
-              src="/mix-logo-outline.png"
-              width={1192}
-              height={815}
+              src="/mix-logo-hero-depth.png"
+              width={1518}
+              height={1036}
               alt=""
               priority
               sizes="(max-width: 760px) 80vw, 46vw"
