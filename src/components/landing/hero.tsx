@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Play, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EntryButton } from "@/components/entry-button";
-export function Hero() {
+export function Hero({ logoPreview }: { logoPreview?: ReactNode } = {}) {
   const reduced = useReducedMotion();
   return (
     <div className="hero-band">
@@ -47,33 +48,37 @@ export function Hero() {
         </motion.div>
 
         <div className="hero-brand-visual" aria-label="MIX">
-          <motion.div
-            className="hero-logo-reveal"
-            initial={
-              reduced
-                ? false
-                : {
-                    clipPath: "inset(100% 0 0 0)",
-                    opacity: 0,
-                    y: 46,
-                  }
-            }
-            animate={{ clipPath: "inset(0% 0 0 0)", opacity: 1, y: 0 }}
-            transition={{
-              clipPath: { duration: 1.25, ease: [0.22, 1, 0.36, 1] },
-              opacity: { duration: 0.35 },
-              y: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-            }}
-          >
-            <Image
-              src="/mix-logo-hero-depth.png"
-              width={1518}
-              height={1036}
-              alt=""
-              priority
-              sizes="(max-width: 760px) 80vw, 46vw"
-            />
-          </motion.div>
+          {logoPreview ?? (
+            <div className="hero-logo-reveal hero-logo-flat">
+              <motion.div
+                className="hero-logo-entrance"
+                initial={
+                  reduced
+                    ? false
+                    : {
+                        clipPath: "inset(100% 0 0 0)",
+                        opacity: 0,
+                        y: 46,
+                      }
+                }
+                animate={{ clipPath: "inset(0% 0 0 0)", opacity: 1, y: 0 }}
+                transition={{
+                  clipPath: { duration: 1.25, ease: [0.22, 1, 0.36, 1] },
+                  opacity: { duration: 0.35 },
+                  y: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+                }}
+              >
+                <Image
+                  src="/mix-logo-hero-flat.png"
+                  width={1518}
+                  height={1036}
+                  alt=""
+                  priority
+                  sizes="(max-width: 760px) 80vw, 46vw"
+                />
+              </motion.div>
+            </div>
+          )}
         </div>
       </section>
       <div className="hero-proof">

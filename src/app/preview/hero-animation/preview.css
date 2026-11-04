@@ -1,0 +1,61 @@
+.hero-animation-preview .logo-interaction-area {
+  position: relative;
+  cursor: default;
+  touch-action: pan-y;
+  will-change: auto;
+}
+.hero-animation-preview .logo-pointer-light {
+  position: absolute;
+  inset: 4%;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 38% 35%, #b9f4b2, transparent 66%);
+  mask-image: radial-gradient(
+    ellipse closest-side,
+    black 20%,
+    transparent 100%
+  );
+}
+.hero-animation-preview .logo-entrance {
+  width: 100%;
+}
+.hero-animation-preview .logo-tilt {
+  width: 100%;
+  transform-origin: center;
+  pointer-events: none;
+}
+.hero-animation-preview .logo-tilt img {
+  filter: none;
+}
+.logo-preview-controls {
+  max-width: 720px;
+  margin: 24px auto;
+  padding: 24px;
+  color: #133d2f;
+  background: #eaf4ee;
+  border: 1px solid #c7ddd0;
+  border-radius: 18px;
+  line-height: 1.7;
+}
+.logo-preview-controls p {
+  margin: 8px 0;
+}
+.logo-preview-controls label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+.logo-preview-controls input {
+  width: 20px;
+  height: 20px;
+  accent-color: #07543b;
+}
+.logo-preview-controls a {
+  text-decoration: underline;
+}
+@media (max-width: 760px) {
+  .logo-preview-controls {
+    margin: 20px 14px;
+  }
+}

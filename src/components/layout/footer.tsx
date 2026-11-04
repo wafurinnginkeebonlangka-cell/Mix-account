@@ -79,7 +79,7 @@ export function Footer() {
           <div className="footer-contact">
             <h2>ติดต่อเรา</h2>
             <a href={contactEmailHref()}>{site.email}</a>
-            <a href={site.phoneHref}>{site.phone}</a>
+            <a href="tel:0844203333">084-420-3333</a>
             <Link href="/register">เริ่มทดลองใช้ฟรี</Link>
           </div>
         </div>
